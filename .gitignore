@@ -1,5 +1,4 @@
-# Generated data — do not commit
-Database/Data/*.parquet
+# Images — fetched live in dashboard, never committed
 Database/Images/
 
 # Automator logs
