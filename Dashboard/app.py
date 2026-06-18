@@ -25,20 +25,17 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-  [data-testid="stAppViewContainer"] { background-color: #0f0f1a; }
-  [data-testid="stSidebar"] { background-color: #12122a; }
-  h1, h2, h3 { color: #a0c4ff; }
   .kpi-card {
-    background: #16213e; border-radius: 8px; padding: 16px 20px;
-    border-left: 3px solid #4fc3f7; margin-bottom: 10px;
+    background: #e8f0fe; border-radius: 8px; padding: 16px 20px;
+    border-left: 3px solid #1565c0; margin-bottom: 10px;
   }
-  .kpi-label { font-size: 0.78em; color: #90caf9; text-transform: uppercase; letter-spacing: 1px; }
-  .kpi-value { font-size: 1.6em; font-weight: 700; color: #e0e0e0; }
-  .kpi-sub   { font-size: 0.82em; color: #aaaaaa; margin-top: 2px; }
-  .section-divider { border-top: 1px solid #2a2a4a; margin: 18px 0; }
-  .img-label { font-size: 0.82em; color: #90caf9; font-weight: 600;
+  .kpi-label { font-size: 0.78em; color: #1565c0; text-transform: uppercase; letter-spacing: 1px; }
+  .kpi-value { font-size: 1.6em; font-weight: 700; color: #0d1b2a; }
+  .kpi-sub   { font-size: 0.82em; color: #555; margin-top: 2px; }
+  .section-divider { border-top: 1px solid #ddd; margin: 18px 0; }
+  .img-label { font-size: 0.82em; color: #1565c0; font-weight: 600;
                text-align: center; margin-bottom: 4px; }
-  .fetch-note { font-size: 0.80em; color: #666; font-style: italic; }
+  .fetch-note { font-size: 0.80em; color: #888; font-style: italic; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -373,7 +370,7 @@ with tab_civ:
             agg[f"roll"] = agg["precip_mm"].rolling(roll_days, min_periods=1).sum()
             fig = go.Figure()
             fig.add_trace(go.Bar(x=agg["date"], y=agg["precip_mm"],
-                                 name="Daily", marker_color="#1e3a5f", opacity=0.5))
+                                 name="Daily", marker_color="#90caf9", opacity=0.6))
             fig.add_trace(go.Scatter(x=agg["date"], y=agg["roll"],
                                      name=f"{roll_days}d Rolling",
                                      line=dict(color="#4fc3f7", width=2)))
@@ -392,11 +389,11 @@ with tab_civ:
 
         fig.update_layout(
             title=title,
-            paper_bgcolor="#0f0f1a", plot_bgcolor="#0f0f1a",
-            font=dict(color="#e0e0e0"),
-            legend=dict(bgcolor="#16213e"),
-            xaxis=dict(gridcolor="#1e1e3a"),
-            yaxis=dict(gridcolor="#1e1e3a", title="mm"),
+            paper_bgcolor="white", plot_bgcolor="#f8f9fa",
+            font=dict(color="#0d1b2a"),
+            legend=dict(bgcolor="white"),
+            xaxis=dict(gridcolor="#dee2e6"),
+            yaxis=dict(gridcolor="#dee2e6", title="mm"),
             height=420, margin=dict(l=40, r=20, t=40, b=40),
         )
         st.plotly_chart(fig, use_container_width=True)
@@ -423,11 +420,11 @@ with tab_civ:
                                       line=dict(color=palette[i % len(palette)], width=2)))
         fig2.update_layout(
             title=f"Cumulative YTD — {yoy_station}",
-            paper_bgcolor="#0f0f1a", plot_bgcolor="#0f0f1a",
-            font=dict(color="#e0e0e0"),
-            legend=dict(bgcolor="#16213e"),
-            xaxis=dict(gridcolor="#1e1e3a", title="Day of Year"),
-            yaxis=dict(gridcolor="#1e1e3a", title="Cumulative mm"),
+            paper_bgcolor="white", plot_bgcolor="#f8f9fa",
+            font=dict(color="#0d1b2a"),
+            legend=dict(bgcolor="white"),
+            xaxis=dict(gridcolor="#dee2e6", title="Day of Year"),
+            yaxis=dict(gridcolor="#dee2e6", title="Cumulative mm"),
             height=380, margin=dict(l=40, r=20, t=40, b=40),
         )
         st.plotly_chart(fig2, use_container_width=True)
