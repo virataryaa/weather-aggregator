@@ -1,0 +1,16 @@
+# Generated data — do not commit
+Database/Data/*.parquet
+Database/Images/
+
+# Automator logs
+Automator/logs/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# OS
+.DS_Store
+Thumbs.db
